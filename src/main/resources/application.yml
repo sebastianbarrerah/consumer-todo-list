@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: to-do-list-consumer
+  datasource:
+    url: jdbc:mysql://localhost:3306/todo-list-consumer
+    username: root
+    password: sebasbh
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  rabbitmq:
+    addresses: ${RABBIT_URI}
+
+rabbitmq:
+  queue: to-do-list_queue
