@@ -12,16 +12,19 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = "tasks")
+@ToString(exclude = {"tasks", "tasksAsCollaborator"})
 @Table(name = "users")
 public class User {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
     private String role;
 
-    private Task tasks;
+    @OneToMany(mappedBy = "author")
+    private List<Task> tasks;
 
+    @ManyToMany(mappedBy = "collaborators")
     private List<Task> tasksAsCollaborator;
 }
